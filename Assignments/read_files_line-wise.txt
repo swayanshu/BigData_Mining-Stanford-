@@ -1,0 +1,13 @@
+import pandas as pd
+
+def count_vertices(dataset_path):
+    chunksize = 1 
+    no_nodes = 0
+    i = 0
+    for chunk in pd.read_csv(dataset_path, sep= '\t', chunksize=chunksize, header=None):
+        if int(chunk.loc[i,0]) > no_nodes :
+            no_nodes = int(chunk.loc[i,0])
+        i = i + 1
+    return no_nodes
+
+count_vertices(dataset_path)
